@@ -1,0 +1,9 @@
+n: .word
+li $4,1
+lw $5,n
+
+for: beqz $5,endfor
+mul $4,$4,$5
+sub $5,$5,1
+b for
+endfor: 

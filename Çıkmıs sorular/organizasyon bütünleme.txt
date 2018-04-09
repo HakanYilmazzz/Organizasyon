@@ -1,0 +1,23 @@
+
+Bilgisayar organizasyonu bütünleme 2013
+ (Bazý sorularý yarým hatrlýyorum yanlýþ varsa düzeltin)
+ 
+1) Baþlangýç adresi 0X1001000 olan word tipindeki bilmemneyin ikili gösterimindeki 0 ve 1 lerin sayýsýný veren (0 larý $5 1leri $6 ya kaydeden) TAL kodunu yazýnýz.
+ 
+2) int A[40][30] tanýmlamasýný yapan TAL kodunu yazýnýz.
+ 
+3) row majör A[40][16]=5 iþlemini yapan TAL kodunu yazýnýz.
+ 
+4) column majör A[20][8]=6 iþlemini yapan TAL kodunu yazýnýz.
+ 
+5) lw $6, 32, ($5) ve add $7, $5, $5 kodlarýnýn hexedecimal karþýlýðýný yazýnýz.
+ 
+6)a'nýn baþlancýç adresi 0X1001000 dir if(a==2) then a=a+b+c else b=a-c kodunu TAL da yazýnýz.
+ 
+BOÞLUK DOLDURMA DOÐRU YANLIÞ SORULARI:
+ 
+MÝPS mimarisinde genel amaçlý yazmaçlarýn sayýsý ........... tanedir.
+ Verilerin adreslerinin kabaca yerleþtirilmesine ................. denir.
+ Çalýþan komutlarýn tutulduðu register ......... registerdir.
+ Tam sayý ve kayan noktalý sayýlarýn tutulduðu register tipleri aynýdýr (D)(Y)
+ Ýþlemcilerde çýkarma devresi vardýr (D)(Y)
