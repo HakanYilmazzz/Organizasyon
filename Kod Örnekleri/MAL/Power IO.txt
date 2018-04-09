@@ -1,0 +1,42 @@
+#Power Function
+
+	.data
+s1: 	.asciiz "Enter a base: "
+s2:	.asciiz "Enter a power: "
+s3: 	.asciiz "Result: "
+	.text
+main:
+	la $4, s1	# Enter a base:
+	li $2, 4
+	syscall
+	
+	li $2, 5
+	syscall
+	move $5, $2	# $5 = base
+
+	la $4, s2	#Enter a power:
+	li $2, 4
+	syscall
+	
+	li $2, 5
+	syscall
+	move $6, $2	#$6 = power
+
+	sub $6, $6, 1	#Its necessary
+
+for:
+	add $5, $5, $5
+	sub $6 $6, 1
+	bgtz $6, for	
+
+end:
+	la $4, s3	# Result:
+	li $2, 4
+	syscall	
+
+	move $4, $5
+	li $2, 1
+	syscall 
+
+	li $2, 10 	# Done
+	syscall

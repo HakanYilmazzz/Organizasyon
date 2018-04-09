@@ -1,0 +1,20 @@
+        .data
+stack:  .byte   0:50
+sp:     .word   stack # stack icin stack pointer
+bottom: .word         # stack en alti
+bias:   .word   48    # ondalik sifirin ASCII karisiligi
+number: .word   1990
+digit:  .word
+        
+        .text
+loop:   rem     digit, number, 10   # number % 10 = digit
+        add     digit, digit, bias  # 48 + digit
+        move    m[sp], digit        # push stack
+        add     sp, sp, 1           # push stack
+        div     number, number, 10  # number / 10 = number
+        bgtz    number, loop        # if( number > 0 )
+        la      bottom, stack       # stack en alti
+print:  add     sp, sp, -1          # pop stack
+        putc    m[sp]               # ASCII karisiligi ne ise yaz
+        bgt     sp, bottom, print   # if( sp > bottom )
+        done

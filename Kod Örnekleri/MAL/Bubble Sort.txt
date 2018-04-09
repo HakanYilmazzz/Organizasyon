@@ -1,0 +1,45 @@
+	.data
+s1:	.asciiz "Enter a number: "
+s2:	.asciiz "Result: "
+s3:	.asciiz "\n"
+	.text
+main:
+	li $10, 0
+for:
+	la $4, s1
+	li $2, 4
+	syscall
+
+	li $2, 5
+	syscall
+	
+	sw $2, ($29)
+	add $29, $29, -4
+	add $10, $10, 1
+	
+	blt $10, 4, for
+	
+
+print:
+	la $4, s2
+	li $2, 4
+	syscall
+
+	add $29, $29, 20
+for2:
+	la $4, s3
+	li $2, 4
+	syscall
+
+	add $29, $29, -4
+	lw $4, ($29)
+	
+	li $2, 1
+	syscall
+
+	add $10, $10, -1
+	bnez $10, for2
+
+	li $2, 10
+	syscall
+	

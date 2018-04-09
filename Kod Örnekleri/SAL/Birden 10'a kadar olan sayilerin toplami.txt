@@ -1,0 +1,21 @@
+.data
+
+girdi  :       .asciiz "Birden 10'a kadar olan sayilarin toplami: "
+i      :       .word 1
+toplam :       .word 0
+newline:       .byte '\n'
+   
+.text
+
+__start:
+
+for: bgt i,10,end
+	  add toplam,toplam,i
+	  add i,i,1
+	  b for
+
+end: puts girdi
+	  put newline
+	  put toplam
+          done
+

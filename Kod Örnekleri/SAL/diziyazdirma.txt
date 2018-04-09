@@ -1,0 +1,44 @@
+.data
+
+array     : .word 0:20
+s1        : .asciiz ". elemaný girin: "
+s2        : .asciiz ". eleman: "
+n         : .word 
+i         : .word 0
+baslangic : .word 0
+sayi      : .word 0
+fark      : .word 0
+newline   : .byte '\n'
+
+.text
+
+__start: la i,array
+	 move baslangic,i
+
+main:    sub n,i,baslangic
+	 div n,n,4
+	 put n
+	 puts s1
+	 get sayi
+	 move m[i],sayi
+	 add i,i,4
+	 sub fark,i,baslangic
+	 bge fark,20,next
+	 b main
+
+next:    sub i,i,20
+
+end:     sub n,i,baslangic
+	 div n,n,4
+	 move sayi,m[i]
+	 add i,i,4 
+	 put n
+	 puts s2
+	 put sayi
+	 put newline
+	 sub fark,i,baslangic
+	 bge fark,20,son
+	 b end
+	 
+son:     done
+

@@ -1,0 +1,29 @@
+    .data
+ar: .word   0:50
+    
+    .text
+    # $8 dizinin elemalari yer degistirdi mi anlamak icin degisken
+    # $9 dizinin adreslerinde gezmek icin degisken
+    # $10 karsilastirma yapilacak elemanin adresi
+    # $11 ve $12 karislastirma yapilacak elamlar
+    # $13 sayilar arasindaki fark
+    # $14 dizinin ilk elemaninin adresi 
+    la      $14, ar # dizinin ilk elemaninin adresi
+loop:
+    li      $8, 1  # elemanlar degistimi kontrolu icin bir ile isleme gir
+    li      $9, 0  # dizi icinde gezilen elemanlarin ilki
+for:
+    add     $10, $14, $9 # dizi icerisinde ilerle (her zaman en basa ekleyerek)
+    lw      $11, ($10)   # karsilastirma yapilacak ilk eleman
+    lw      $12, 4($10)  # ve ondan bir sonraki
+    sub     $13, $11, $12 # aralarindaki farka bak
+    blez    $13, noswap   # fark <= 0 ise 
+    li      $8, 0         # degisim oldugu icin sifir yap
+    sw      $11, 4($10)   # elemanlari degistir
+    sw      $12, ($10)    # ^  ^  ^
+noswap:
+    add     $9, $9, 4     # dizide ilerle
+    sub     $13, $9, 196  # tam tur yapildi mi bak
+    bltz    $13, for      # ^  ^  ^
+    beq     $8, $0, loop  # yapilan turda degisme varsa devam et
+    done

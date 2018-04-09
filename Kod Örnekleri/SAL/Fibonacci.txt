@@ -1,0 +1,29 @@
+.data
+
+oku  :   .asciiz "Kacinci fibonacci sayisini hesaplayalim ?"
+oku1 :   .asciiz ". fibonacci sayisi= " 
+n    :   .word
+i    :   .word 3
+fib1 :   .word 1
+fib2 :   .word 1
+fib  :   .word
+
+.text
+
+__start: puts oku
+	 get n
+
+	
+for    : bgt i,n,end
+	 add fib,fib1,fib2
+	 move fib2,fib1
+	 move fib1,fib
+	 add i,i,1
+	 b for
+
+end    : put n
+	 puts oku1
+	 put fib
+ 	 done
+
+

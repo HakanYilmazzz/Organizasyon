@@ -1,0 +1,25 @@
+.data 
+
+girdi     :  .asciiz "Faktoriyeli hesaplanacak sayiyi girin: "
+n         :  .word 
+carpim    :  .word 1
+i         :  .word 1
+girdi1    :  .asciiz " faktoriyel = "
+
+.text
+__start: puts girdi
+	 get n
+
+for: bgt i,n,end
+     mul carpim,carpim,i
+     add i,i,1
+     b for
+
+end:
+     put n
+     puts girdi1
+     put carpim
+     done
+
+
+     

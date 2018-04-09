@@ -1,0 +1,28 @@
+.data
+sayi1: .byte  126
+sayi2: .byte  96
+sonuc: .byte 
+string1: .asciiz "tasma yok"
+string2: .asciiz "tasma var"
+.text
+__start: add sonuc,sayi1,sayi2
+             bltz sayi1,label
+             bltz sayi2,  label1
+             bltz sonuc, yanlis
+             b dogru
+label:    bgtz sayi2, label2
+             bgtz sonuc, yanlis
+             b dogru
+
+label1:  mul sayi2,sayi2,-1
+            ble sayi2,sayi1,yanlis
+            b dogru
+label2: mul sayi1,sayi1,-1
+           ble sayi1,sayi2,yanlis
+            b dogru
+            
+dogru:  puts string1
+	b endif
+yanlis:  puts string2
+
+endif:      done

@@ -1,0 +1,27 @@
+.data
+sayi1 :		.word 8
+sayi2 :		.word 1
+i     :		.word 32
+adet  :		.word 0
+temp1 :		.word
+temp2 :		.word
+
+
+.text
+
+__start :
+for	:	beqz i,end
+		rem temp1,sayi1,2
+		rem temp2,sayi2,2
+		div sayi1,sayi1,2
+		div sayi2,sayi2,2	
+		sub i,i,1
+		beq temp1,temp2,step	
+		b for
+
+step    :	add adet,adet,1
+		b for
+
+end	:	put adet
+
+done

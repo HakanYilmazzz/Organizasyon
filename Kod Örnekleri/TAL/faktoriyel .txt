@@ -1,0 +1,21 @@
+.data
+sayi: .word 3
+.text
+lui $9,0x1001
+ori $9,$9,0x0000
+lw $10,0($9)
+addi $11,$0,1
+addi $8,$0,1
+for: 
+mult $11,$8
+mflo $8
+sub $15,$11,$10
+bgez $15,finish
+addi $11,$11,1
+b for
+
+finish:	addi $2,$0,1
+	add $4,$8,$0
+	syscall
+	addi $2,$0,10
+	syscall 

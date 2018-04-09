@@ -1,0 +1,17 @@
+.data
+sayi1: .word 25
+sayi2: .word 12
+sayi3: .word 9
+output: .asciiz "en kucuk sayimiz="
+min: .word
+	.text
+__strt: move min,sayi1
+	blt min,sayi1,_dvm1
+	move min,sayi1
+_dvm1:	blt min,sayi2,_dvm2
+	move min,sayi2
+_dvm2:	blt min,sayi3,_dvm3
+	move min,sayi3
+_dvm3:	puts output
+	put min
+	done

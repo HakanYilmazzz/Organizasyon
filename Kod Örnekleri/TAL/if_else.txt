@@ -1,0 +1,24 @@
+	.data
+	A: .word 5 #$6
+	B: .word 2 #$7
+	C: .word 15 #$8
+
+	.text
+
+	start: lui $5,0x1001
+	ori $5,$5,0x0000
+	lw $6,0($5)
+	lw $7,4($5)
+	lw $8,8($5)
+	bgtz $6,if
+	addi $6,$0,10
+	add $7,$0,$6
+
+if: 	div $8,$6
+	mflo $7
+
+finish:	addi $2,$0,1
+	add $4,$7,$0
+	syscall
+	addi $2,$0,10
+	syscall 

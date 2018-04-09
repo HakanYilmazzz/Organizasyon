@@ -1,0 +1,22 @@
+.data
+sayi1: .word  20
+sayi2: .word  30
+sayi3: .word  4
+.text
+start: lui $5,0x1001
+ori $5,$5,0x0000
+lw $6,0($5)
+lw $7,4($5)
+lw $8,8($5)
+addi $9,$0,0
+add $9,$6,$7
+add $9,$9,$8
+addi $10,$0,3
+div $9,$10
+mflo $11
+
+finish:	addi $2,$0,1
+	add $4,$11,$0
+	syscall
+	addi $2,$0,10
+	syscall 

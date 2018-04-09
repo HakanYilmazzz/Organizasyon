@@ -1,0 +1,12 @@
+	.data
+sayi:	.word	5
+i:	.word	1
+sonuc:	.word	1
+	.text 
+faktoriyel:
+	mul sonuc,sonuc,i
+	bgt i,sayi,endif
+	add i,i,1
+	b faktoriyel
+endif:	put sonuc
+	done

@@ -1,0 +1,24 @@
+# sayi haricinde bir sey girene kadar girdi almaya devam eder
+# ve girilen sayilari basamaklayip (int) icerisinde depolar
+        .data
+ch:     .byte
+int:    .word
+digit:  .word
+result: .asciiz     " notadigit satiri "
+newline:.byte       '\n'
+
+        .text
+__start:
+        move    int, 0
+        get     ch
+procch: bgt     ch, '9', notadigit
+        sub     digit, ch, '0'
+        bltz    digit, notadigit
+        mul     int, int, 10
+        add     int, int, digit
+        get     ch
+        b       procch
+notadigit: puts newline
+        puts result
+        put int
+        done

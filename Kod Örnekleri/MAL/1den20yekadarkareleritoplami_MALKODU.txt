@@ -1,0 +1,26 @@
+# MAL program to sum the squares of the first 20 integers
+# $0  -- always 0
+# $8  -- squares
+# $9  -- condition
+# $10 -- numintegers
+# $11 -- temp
+# $12 -- count
+
+			.data
+	numintegers:	.word	20
+	result:		.word
+
+			.text
+	__start:	li	$12,1
+			li	$8, 0
+			lw	$10, numintegers
+	while:		sub	$9, $12, $10
+			bgtz	$9, end
+			mul	$11, $12, $12
+			add	$8, $8, $11
+			add	$12, $12, 1
+			j	while
+	end:		sw	$8,result
+			put	result
+			done 
+

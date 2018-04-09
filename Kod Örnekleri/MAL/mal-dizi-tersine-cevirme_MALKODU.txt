@@ -1,0 +1,41 @@
+	.data
+dizi: .word 0:10
+result: .word 
+s1:	.asciiz "\n"
+sonuc: .word
+# $8 bas $9 son elemanlar
+	.text
+__start:
+	la $8, dizi		# dizinin basi
+	add $9, $8, 36	# dizinin sonu
+	add $10, $8, 20 # dizinin ortasi
+# diziyi doldur
+	li $11, 0 # index	
+
+for:
+	sw $11, 0($8)
+	add $8, $8, 4
+	add $11, $11, 1
+	blt $11, 10, for
+	la $8, dizi
+# diziyi ters cevir
+loop:
+	lw $11, 0($8)
+	lw $12, 0($9)
+	sw $11, 0($9)
+	sw $12, 0($8)
+	sw $12,result
+	put result
+	la $4, s1
+	li $2, 4
+	syscall
+	sw $11,sonuc
+	put sonuc
+	la $4, s1
+	li $2, 4
+	syscall
+	add $8, $8, 4
+	add $9, $9, -4
+	bne $8, $10, loop
+		
+	done

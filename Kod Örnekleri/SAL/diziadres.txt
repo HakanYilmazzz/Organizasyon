@@ -1,0 +1,31 @@
+.data
+s1: .asciiz "degerleri giriniz:"
+s2: .asciiz "sonuc:"
+ar: .word 0:10
+i: .word
+.text
+la $4,s1
+li $2,4
+syscall
+la $5,ar
+li $6,0
+forinput:
+li $2,5
+syscall
+sw $2,($5)
+add $5,$5,4
+add $6,$6,1
+bne $6,5,forinput
+add $5,$5,-20
+erisim:
+lw $7,16($5)
+sw $7,16($5)
+print: la $4,s2
+li $2,4
+syscall
+move $4,$7
+li $2,1
+syscall
+li $2,10
+syscall
+done

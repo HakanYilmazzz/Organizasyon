@@ -1,0 +1,23 @@
+# SAL program to sum the squares of  the
+# first 20 integers
+
+			.data
+
+		counter:	.word
+		squares:	.word
+		NUMINTEGERS:	.word 20
+		condition:	.word
+		temp:		.word
+
+			.text
+	__start:	move	counter, 1
+			move	squares, 0
+	while:		sub	condition, counter, NUMINTEGERS
+			bgtz	condition, end
+			mul	temp, counter, counter
+			add	squares, squares, temp
+			add	counter, counter, 1
+			b	while
+	end:		put	squares
+			done
+

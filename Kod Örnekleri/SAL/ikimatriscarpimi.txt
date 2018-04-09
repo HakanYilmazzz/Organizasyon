@@ -1,0 +1,54 @@
+	.data
+arrayA: .word 1:100
+arrayB: .word 2:100
+arrayc: .word 0:100
+i: .word 0
+j: .word 0
+k: .word 0
+d1: .word 0
+m: .word 0
+size: .word 4
+adresA: .word 0
+adresB: .word 0
+adresC: .word 0
+baseA: .word 0
+baseB: .word 0
+baseC: .word 0
+z: .word 0
+	.text
+	la baseA, arrayA
+	la baseB, arrayB
+	la baseC, arrayC
+_start: beq d1, k, kontrol
+	mul adresC,i,d1
+	add adresC,adresC,j
+	mul adresC,adresC,size
+	add adresC,adresC,baseC
+	mul adresA,i,d1
+	add adresA,adresA,k
+	mul adresA,adresA,size
+	add adresA,adresA,baseA
+	mul adresB,k,d1
+	add adresB,adresB,j
+	mul adresB,adresB,size
+	add adresB,adresB,baseB
+	mul z,M[adresA],M[adresB]
+	add M[adresC],M[adresC],z
+	move z,0
+	add k,k,1
+	b _start
+kontrol:beq d1,j,kontrol
+	add j,j,1
+	move k,0
+	b _start
+kontrol1:beq d1,i,endif
+	 add i,i,1
+	 move j,0
+	 move k,0
+	 b _start
+endif:  put M[adresC]
+	putc '\n'
+	add adresC,adresC,4
+	add m,m,1
+	bne m,100,endif
+	done

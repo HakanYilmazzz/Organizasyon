@@ -1,0 +1,109 @@
+.data
+
+text1: .asciiz ". elemaný giriniz: "
+yeni_satir: .asciiz "\n"
+bosluk: .asciiz " "
+
+dizi1: .word 0:9
+dizi2: .word 0:9
+dizi3: .word 0:9
+
+dizi1_adres: .word 0
+dizi2_adres: .word 0
+dizi3_adres: .word 0
+
+degisken: .word 0
+sayi: .word 0
+sayac: .word 1
+sayac1: .word 1
+toplam: .word 0
+kontrol: .word 1
+
+.text
+
+__start:
+
+la dizi1_adres,dizi1
+la dizi2_adres,dizi2
+la dizi3_adres,dizi3
+
+dizi1_gir:
+	put sayac
+	puts text1
+	get sayi
+	move m[dizi1_adres],sayi
+	add dizi1_adres,dizi1_adres,4
+	add sayac,sayac,1
+	ble sayac,9,dizi1_gir
+
+move sayac,1
+
+dizi2_gir:
+	put sayac
+	puts text1
+	get sayi
+	move m[dizi3_adres],sayi
+	add dizi3_adres,dizi3_adres,4
+	add sayac,sayac,1
+	ble sayac,9,dizi2_gir
+
+move sayac,1
+la dizi3_adres,dizi3
+move degisken,dizi3_adres
+
+transpoz:
+	move m[dizi2_adres],m[degisken]
+	move sayi,m[dizi2_adres]
+	add degisken,degisken,12
+	add dizi2_adres,dizi2_adres,4
+	add sayac,sayac,1
+	ble sayac,3,transpoz
+	add sayac1,sayac1,1
+	add dizi3_adres,dizi3_adres,4
+	move degisken,dizi3_adres
+	move sayac,1
+	ble sayac1,3,transpoz
+
+la dizi1_adres,dizi1
+la dizi2_adres,dizi2
+la dizi3_adres,dizi3
+move sayac,1
+move sayac1,1
+
+carpim:
+	mul sayi,m[dizi1_adres],m[dizi2_adres]
+	add toplam,toplam,sayi
+	add dizi1_adres,dizi1_adres,4
+	add dizi2_adres,dizi2_adres,4
+	add sayac,sayac,1
+	ble sayac,3,carpim
+	move sayac,1
+	move m[dizi3_adres],toplam
+	add dizi3_adres,dizi3_adres,4
+	move toplam,0
+	add sayac1,sayac1,1
+	sub dizi1_adres,dizi1_adres,12
+	ble sayac1,3,carpim
+	add dizi1_adres,dizi1_adres,12
+	sub dizi2_adres,dizi2_adres,36
+	move sayac1,1
+	add kontrol,kontrol,1
+	ble kontrol,3,carpim
+	
+la dizi3_adres,dizi3
+move sayac,1
+move sayac1,1
+
+yaz:
+	move sayi,m[dizi3_adres]
+	put sayi
+	puts bosluk
+	add dizi3_adres,dizi3_adres,4
+	add sayac,sayac,1
+	ble sayac,3,yaz	
+	move sayac,1
+	puts yeni_satir
+	add sayac1,sayac1,1
+	ble sayac1,3,yaz	
+
+	done

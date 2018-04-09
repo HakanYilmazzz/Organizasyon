@@ -1,0 +1,20 @@
+    .data
+string1: .asciiz "tasma var"
+string2: .asciiz "tasma yok"
+    .text
+__start:	li      $8,  1
+	li      $9,  2
+	add     $10, $8, $9 
+	bltz    $8, parantez1
+	bltz    $9, parantez1
+	bgtz    $10, parantez1
+	b      label1
+parantez1:bgtz    $8, parantez2
+	bgtz    $9, parantez2
+	bltz    $10, parantez2
+	b label1
+label1:	puts string2
+	b endif
+parantez2: puts string1
+ endif:  done
+

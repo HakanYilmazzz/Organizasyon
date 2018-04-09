@@ -1,0 +1,12 @@
+#degiskenleri byte olarak tanýmlayýnca hata veriyor	
+.data
+sayi1: .word 0x1FF80000
+sayi2: .word 0x1008000
+sonuc: .word
+.text
+lw $8,sayi1
+lw $9,sayi2
+add $10,$8,$9
+sw $10,sonuc
+put sonuc
+done

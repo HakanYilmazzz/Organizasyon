@@ -1,0 +1,18 @@
+.data
+sayi: .word 21
+adet: .word 0
+miktar: .word 31
+sonuc: .word 0
+mask: .word 0x1
+test: .word 0
+artis: .word 0
+.text
+__start: and sonuc,sayi,mask
+	 beq test,sonuc,loop
+	 add adet,adet,1
+loop:	 add artis,artis,1
+	 beq miktar,artis,endif
+	 sra sayi,sayi,1
+	 b __start
+endif:	 put adet
+	 done

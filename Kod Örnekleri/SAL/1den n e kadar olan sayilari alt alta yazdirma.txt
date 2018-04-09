@@ -1,0 +1,27 @@
+.data
+
+abc    :   .asciiz "Bir sayi girin : "
+n      :   .word
+i      :   .word 1
+def    :   .asciiz "1 den "
+ghe    :   .asciiz "e kadar olan sayılar sırasıyla : "
+newline:   .byte '\n'
+
+.text
+
+__start: puts abc
+	 get n
+	 puts def
+	 put n
+	 puts ghe
+	 put newline
+
+dongu  : bgt i,n,end  
+	 put i
+	 put newline
+	 add i,i,1
+	 b dongu
+
+end    : 
+ 	 done
+

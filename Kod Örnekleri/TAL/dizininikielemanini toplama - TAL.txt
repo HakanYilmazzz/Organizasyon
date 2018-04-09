@@ -1,0 +1,24 @@
+	.data
+dizi1: .word 1:10
+dizi2: .word 2:10
+toplamDizisi: .word 0:10
+	.text
+__start: 
+	lui $9,0x1001	
+	addi $11,$0,0
+	addi $15,$0,9
+for: 
+	lw $13,0($9)
+	lw $14,40($9)
+	addu $12,$13,$14
+	sw $12,80($9)
+	addiu $9,$9,4
+	addiu $11,$11,1
+	sub $20,$11,$15
+	bltz $20,for
+
+finish:	addi $2,$0,1
+	add $4,$12,$0
+	syscall
+	addi $2,$0,10
+	syscall 

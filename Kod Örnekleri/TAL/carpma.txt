@@ -1,0 +1,17 @@
+	.data
+# $8, $9, $10 carma islemi icin
+# $11, $12, $13, $14 bolme islemi icin
+	.text
+__start:
+# carpma islemi ($8*$9=$10)
+addi $8, $0, 12
+addi $9, $0, -3
+mult $8, $9
+mflo $10
+addi $2,$0,1
+add $4,$10,$0
+syscall
+#done
+addi $2, $0, 10
+syscall
+

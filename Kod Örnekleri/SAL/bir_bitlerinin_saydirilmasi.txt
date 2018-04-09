@@ -1,0 +1,25 @@
+.data
+sayi  :		.word 
+str   :		.asciiz "kaci kontrol ediyim : "
+str1  :		.asciiz "girdiginiz sayida bulunan 1 sayisi :"
+adet  : 	.word 0
+i     :	 	.word 32
+gecici:		.word 
+.text
+__start :	
+		puts str
+		get sayi
+for	:	beqz i,end
+		rem gecici,sayi,2
+		beq sayi, 0, end
+		div sayi,sayi,2
+		sub i,i,1
+		beq gecici,1,step
+		b for
+		
+step :	add adet,adet,1	
+		b for
+		
+end	:	puts str1
+		put adet
+	done

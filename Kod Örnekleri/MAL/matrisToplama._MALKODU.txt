@@ -1,0 +1,30 @@
+    .data
+# $8 dizi1 ilk eleman adresi
+# $9 dizi2 ilk eleman adresi
+# $10 toplamDizisi ilk eleman adresi
+# $11 indeks
+# $12 gecici toplama islemi sonucu
+# $13 dongu aninda dizi1 elemaninin degeri
+# $14 dongu aninda dizi2 elemaninin degeri
+# $15 bir sayi degeri icin
+dizi1:          .word 1:16
+dizi2:          .word 2:16
+toplamDizisi:   .word 0:16
+    .text
+__start:
+    la      $8, dizi1
+    la      $9, dizi2
+    la      $10, toplamDizisi
+    li      $11, 0            # indeksi sifirdan baslat
+    li      $15, 16
+for:
+    lw      $13, 0($8)        # dizi1
+    lw      $14, 0($9)        # dizi2
+    add     $12, $13, $14     
+    sw      $12, 0($10)       # toplamDizisine sonucu yazma
+    add     $8, $8, 4         # dizi1 indeksi ilerlet
+    add     $9, $9, 4         # dizi2 indeksi ilerlet
+    add     $10, $10, 4       # toplamDizisi indeksi ilerlet
+    add     $11, $11, 1       # indeksi arttir
+    blt     $11, $15, for     # for dongusu
+    done

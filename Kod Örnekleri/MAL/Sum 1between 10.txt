@@ -1,0 +1,23 @@
+# Zafer AYAN 13.05.2012
+# This program sums between 0 and 10 numbers
+	.data
+
+first: 	.word 0
+end:	.word 10
+temp: 	.word 1
+	.text
+main:
+	lw $4, first
+	lw $5, end
+	lw $6, temp
+for:
+	add $4, $4, $6
+	add $6, $6, 1
+	bgt $5, $6, for
+
+finish:
+	li $2, 1
+	syscall
+
+	li $2, 10
+	syscall 

@@ -1,0 +1,21 @@
+.data
+
+girdi  :       .asciiz "Birden 10'a kadar olan sayilarin carpimi: "
+i      :       .word 1
+carpim :       .word 1
+newline:       .byte '\n'
+   
+.text
+
+__start:
+
+for: bgt i,10,end
+	  mul carpim,carpim,i
+	  add i,i,1
+	  b for
+
+end: puts girdi
+	  put newline
+	  put carpim
+          done
+

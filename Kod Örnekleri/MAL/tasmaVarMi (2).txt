@@ -1,0 +1,26 @@
+    .data
+string1: .asciiz "tasma var"
+string2: .asciiz " tasma yok"
+sayi1: .word 1
+sayi2: .word 2
+sonuc: .word
+          .text
+__start:	lw $8,sayi1
+	lw $9,sayi2
+	add $10,$8,$9
+	sw $10,sonuc
+	bltz $8,kontrol
+	bltz $9,tasmaYok
+	bgtz $10,tasmaYok
+	b tasmaVar
+	
+kontrol: bgtz $9,tasmaYok
+          	bgtz $10,tasmaVar
+
+tasmaYok: put sonuc
+	puts string2
+	b endif
+
+tasmaVar: puts string1
+endif: done
+

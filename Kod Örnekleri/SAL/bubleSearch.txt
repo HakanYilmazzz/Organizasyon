@@ -1,0 +1,31 @@
+	.data
+dizi:	.word 	0:5
+n:	.word 	0
+m: 	.word 	0
+gecici: 	.word
+base: 	.word
+adresn: 	.word
+adresm: 	.word
+index: 	.word	0
+	.text
+	la base,dizi
+start: 	add m,n,1
+	add adresn,base,0
+	add adresm,base,4
+	blt M[adresn],M[adresm],label
+	move gecici,M[adresn]
+	move M[adresn], M[adresm]
+	move M[adresm],gecici
+label: 	bgt m,4,label1
+	add m,m,1
+	add base,base,4
+	b start
+label1:	bgt n,3,endif
+	add n,n,1
+	move m,0
+	b start
+endif:	 put M[adresn]
+	add adresn,adresn,4
+	add index,index,1
+	ble index,5,endif
+	done

@@ -1,0 +1,19 @@
+	.data
+	.text
+__start:
+# text segment
+lui $6, 0x1001 # 0x10010000
+# 10 elemanli word dizisi
+addi $9, $0, 10 # indeks
+for:
+	sw $9, 0($6)
+	addi $6, $6, 4
+	addi $9, $9, -1
+	bgtz $9, for
+	
+endif:	 addi $2,$0,1
+	add $4,$6,$0
+	syscall
+# done
+	addi $2, $0, 10
+	syscall

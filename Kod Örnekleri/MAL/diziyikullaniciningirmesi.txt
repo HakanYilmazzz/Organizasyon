@@ -1,0 +1,28 @@
+.data
+s1:	.asciiz "Pozitif degerleri giriniz: "
+s3:	.asciiz "\n"
+ar:	.word	0:5
+sonuc:      .word     0	
+	.text
+main:
+	la $4, s1	
+	li $2, 4
+	syscall	
+
+	la $5, ar	
+	li $6, 0	
+	lw $11,sonuc		
+
+forinput:		
+
+	li $2, 5	
+	syscall		
+
+	sw $2, ($5)	
+	add $5, $5, 4	
+	add $6, $6, 1	
+	bne $6, 5, forinput	
+	
+	add $5, $5, -20
+
+	done

@@ -1,0 +1,15 @@
+#A[40][16]=5 islemini row majora gore yapan tal kodu
+
+.data
+A: .word 4800
+.text
+lui $5,0x1001
+ori $5,$5,0x0000
+lw $6,1744($5)
+addi $6,$0,5
+sw $6,1744($5)
+add $4,$6,$0
+addi $2,$0,1
+syscall
+addi $2,$0,10
+syscall

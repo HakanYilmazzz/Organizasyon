@@ -1,0 +1,18 @@
+#0ile4 arasi sayilari toplayan kod 4 de dahil.
+	.data
+	.text
+
+main:	addi $5,$0,0
+	addi $6,$0,4
+	addi $7,$0,1
+	
+for:	add $5, $5, $7
+	addi $7, $7, 1
+	sub $8,$6,$7
+	bgez $8,for
+
+finish:	addi $2,$0,1
+	add $4,$5,$0
+	syscall
+	addi $2,$0,10
+	syscall 

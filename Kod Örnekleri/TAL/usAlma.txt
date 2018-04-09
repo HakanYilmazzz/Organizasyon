@@ -1,0 +1,44 @@
+#Power Function
+	.data
+s1: 	.asciiz "Enter a base: "
+s2:	.asciiz "Enter a power: "
+s3:	.asciiz "Result: "
+	.text
+main:
+	lui $4, 4097
+	ori $2, $0, 4
+	syscall
+	
+	
+	ori $2, $0, 5		# Reading a number
+	syscall
+	addu $5, $0, $2	# $5 = $2(number)
+		
+	addi $4, $4, 15				
+	ori $2, $0, 4		# Reading a power
+	syscall
+
+	ori $2, $0, 5
+	syscall
+	addu $6, $0, $2		# $6 = $2(power)
+	
+	addi $6, $6, -1
+
+for:
+	add $5, $5, $5
+	addi $6, $6, -1
+	bne $6, $0, for	
+
+end:
+	addi $4, $4, 16
+	ori $2, $0, 4
+	syscall
+	
+	addu $4, $0, $5
+	ori $2, $0, 1
+	syscall
+
+	ori $2, $0, 10
+	syscall
+	
+	

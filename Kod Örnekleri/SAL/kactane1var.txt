@@ -1,0 +1,25 @@
+    .data
+sayi:   .word
+maske:  .word   0x00000001
+sonuc:  .word
+str1:   .asciiz "Sayi: "
+str2:   .asciiz "Bu sayida bulunan 1: "
+i:      .word   0
+toplam: .word   0
+    .text
+__start:
+    # sayiyi oku
+    puts    str1
+    get     sayi
+for:
+    and     sonuc, sayi, maske  # sayinin basamagini al
+    srl     sayi, sayi, 1       # bir kere saga kaydir
+    beqz    sonuc, birYok       # sonuc sifir ise bir yok
+    add     toplam, toplam, 1   # toplam bir sayisini artir
+    birYok:
+    add     i, i, 1              
+    blt     i, 32, for          # 32 kere donguyu dondur
+    # sonucu yaz
+    puts    str2
+    put     toplam
+    done

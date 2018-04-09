@@ -1,0 +1,34 @@
+# dizinin 2 sutununu bir yapar
+# tam calismadi
+    .data
+array:      .space 400 # 10 X 10 dizi integer icin ( 0x10010000 ile 0x1001018f arasinda yer alir )
+row:        .word
+col:        .word
+base:       .word
+address:    .word
+elements_in_row:    .word   10
+elements_in_column: .word   10
+size:       .word   4
+i:          .word   0
+    .text
+__start:
+    move    row, 0 # 0. satir
+    move    col, 2 # 2. sutun
+    la      base, array # dizinin ilk elaninin sec
+loop: 
+    beq     row, elements_in_column, next # if( row == elements_in_column )
+    mul     address, row, elements_in_row # sutun icin adresi ilerletiyoruz (ayni zamanda eski adres degerinin uzerine yaziyoruz)
+    add     address, address, col       # satir icin adresi ilerletiyoruz
+    mul     address, address, size      # tum ilerlememizi adres atlama araligina gore yapiyoruz (.word icin 4)
+    add     address, address, base      # ve baslangictaki 0,0 indeksine ekliyoruz (her zaman en bastan basliyoruz eklemeye)
+    move    M[address], 1               # ulastigimiz yere bir yazdik
+    add     row, row, 1                 # kolonu bir attirdik
+    b       loop                        # donguyu tekar cagiriyoruz
+next: 
+    la      base, array
+for:
+    put     M[base]
+    add     base, base, 4
+    add     i, i, 1
+    blt     i, 100, for
+    done

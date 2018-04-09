@@ -1,0 +1,20 @@
+# bolme islemi ($11/$12=$13, $11%$12=$14)
+.data
+.text
+_start:
+addi $3,$0,newline
+addi $11, $0, 44
+addi $12, $0, 10
+div $11, $12
+mflo $13
+mfhi $14
+#put
+addi $2,$0,1
+add $4,$13,$0
+syscall
+addi $2,$0,1
+add $4,$14,$0
+syscall
+#done
+addi $2, $0, 10
+syscall

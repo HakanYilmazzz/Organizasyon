@@ -1,0 +1,52 @@
+			.data
+
+yaricap:		.word			
+pi:			.word			3
+karesi:			.word			
+cevre:			.word		
+alan:			.word			
+
+karesini_hesapla_ra:	.word
+cevre_hesapla_ra:	.word
+alan_hesapla_ra:	.word
+
+str1:			.asciiz			"Yaricapi giriniz: "
+str2:			.asciiz			"Cevresi: "
+str3:			.asciiz			"Alani: "
+yeni_satir:		.asciiz			"\n"
+
+			.text	
+__start:
+			puts			str1
+			get			yaricap
+			la			karesini_hesapla_ra, geri_donus_1
+			b			karesini_hesapla
+
+geri_donus_1:		
+			la			cevre_hesapla_ra, geri_donus_2
+			b			cevre_hesapla
+
+geri_donus_2:
+			la			alan_hesapla_ra, geri_donus_3
+			b			alan_hesapla
+
+geri_donus_3:		
+			puts			str2
+			put			cevre
+			puts			yeni_satir
+			puts			str3
+			put			alan
+			done
+							
+karesini_hesapla:
+			mul			karesi, yaricap, yaricap
+			b			(karesini_hesapla_ra)
+
+cevre_hesapla:		
+			mul			cevre, pi, yaricap
+			mul			cevre, cevre, 2
+			b			(cevre_hesapla_ra)
+
+alan_hesapla:		
+			mul			alan, pi, karesi
+			b			(alan_hesapla_ra)

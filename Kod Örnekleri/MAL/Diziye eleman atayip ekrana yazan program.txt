@@ -1,0 +1,46 @@
+	.data
+s1:	.asciiz "Degerleri giriniz: "
+s2:	.asciiz "Sonuc: "
+s3:	.asciiz "\n"
+ar:	.word 0:5
+
+	.text
+main:
+	la $4, s1
+	li $2, 4
+	syscall
+	la $5, ar
+	li $6, 0
+forinput:
+
+	li $2, 5
+	syscall
+	sw $2, ($5)
+	add $5, $5, 4
+	add $6, $6, 1
+	bne $6, 5, forinput
+
+print:
+	la $4, s2
+	li $2, 4
+	syscall
+
+	add $5, $5, -20
+
+printfor:
+
+	la $4, s3
+	li $2, 4
+	syscall
+
+	lw $4, ($5)
+	li $2, 1
+	syscall
+
+	add $5, $5, 4
+	add $6, $6 -1
+
+	bnez $6, printfor
+
+	li $2, 10
+	syscall

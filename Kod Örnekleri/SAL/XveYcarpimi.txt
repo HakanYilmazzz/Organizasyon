@@ -1,0 +1,26 @@
+# X ve Y nin carpimi ?
+        .data
+x:      .word   3
+y:      .word   8
+ls_sum: .word   0   # sonuc
+test:   .word
+ms_sum: .word   0
+bitsum: .word
+mask:   .word   0x1
+        
+        .text
+__start:
+        and     test, x, mask   # uygun bitleri cikart (isaret bitini)
+        beqz    test, shift     # isaret biti sifirsa alt satiri atla
+        add     ms_sum, ms_sum, y   
+shift:  and     bitsum, ms_sum, 1       # ms_sum en anlamsiz bitini cikart
+        or      ls_sum, ls_sum, bitsum
+        ror     ls_sum, ls_sum, 1
+        sra     ms_sum, ms_sum, 1
+        sll     mask, mask, 1
+        bgtz    mask, _start
+        and     bitsum, ms_sum, 1
+        or      ls_sum, ls_sum, bitsum
+        ror     ls_sum, ls_sum, 1
+        sra     ms_sum, ms_sum, 1
+        done

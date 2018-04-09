@@ -1,0 +1,31 @@
+    .data
+# $8 ust alinan
+# $9 ust
+    .text
+__start:
+# belirlenen degerler
+li      $8, 2
+li      $9, 3
+# esas program
+# fonksiyonu cagirma
+li        $18,    1  # sonuc
+move      $19,    $9 # us
+jal       proc   
+done
+
+proc:
+    # push
+    sw      $31, 0($sp)
+    add     $sp, $sp, -4
+    # kendini us sayisi kere cagir
+if:
+    add     $19, $19, -1
+    blez    $19, endif      # $19 <= 0
+    jal     proc            # kendini cagiriyor (fonksiyon bir cok kere buraya tekrar dönüyor)
+endif:
+    mul     $18, $18, $8    # $8-->ust alinan
+    # pop
+    add     $sp, $sp, 4
+    lw      $31, 0($sp)
+    # return
+    jr      $31             

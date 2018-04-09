@@ -1,0 +1,11 @@
+.data
+sonuc: .word
+.text
+la $6,0($5)
+la $7,4($5)
+li $6,2
+li $7,1
+add $12,$6,$7
+sw $12,sonuc
+put sonuc
+done

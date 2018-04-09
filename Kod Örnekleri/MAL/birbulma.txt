@@ -1,0 +1,21 @@
+.data
+sayi: .word 15
+maske: .word 0x00000001
+toplam: .word 
+#sonuc icin $5
+#i icin $8 kullan
+
+.text
+li $8,0
+li $9,0
+lw $6,sayi
+lw $7,maske
+for: and $5,$6,$7
+       srl $6,$6,1
+       beqz $5,birYok
+       add $9,$9,1
+birYok: add $8,$8,1
+	blt $8,32,for
+	sw $9,toplam
+	put toplam
+	done

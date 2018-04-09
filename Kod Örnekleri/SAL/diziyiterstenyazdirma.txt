@@ -1,0 +1,46 @@
+		.data
+soru:		.asciiz		". sayiyi giriniz: "
+cevap:		.asciiz		". sayi: "
+yeni_satir:	.asciiz		"\n"
+
+dizi:		.word		0:20
+i:		.word 		0
+sayi:		.word		0
+baslangic:	.word		0
+fark:		.word		0
+sira:		.word		0
+
+		.text
+__start:	
+		la		i, dizi
+		move		baslangic, i
+
+oku:		sub		sira, i, baslangic //o anki deðiþkenin adresi
+		div		sira, sira, 4 
+		put 		sira
+		puts		soru
+		get		sayi
+		move		m[i], sayi
+		add		i, i, 4
+		sub		fark, i, baslangic
+		bge		fark, 20, oku_sonrasi
+		b		oku
+
+oku_sonrasi:	sub		i, i, 4
+		move		baslangic, i	
+
+yaz:		move		sayi, m[i]		
+		sub		sira, i, baslangic
+		div		sira, sira, 4
+		add		sira, sira, 4
+		put 		sira
+		puts		cevap		
+		put		sayi
+		puts		yeni_satir
+		sub		i, i, 4
+		sub		fark, baslangic, i
+		bge		fark, 20, son
+		b		yaz
+
+son:		done
+
